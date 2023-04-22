@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <form class="row g-3 w-50 bg-dark rounded mt-3 justify-content-center align-items-center"> <!--(ngSubmit)="rechercherCovoiturage()"-->
+    <div class="col-md-3 ">
+      <label for="villeDepart" class="form-label text-white">Ville de départ :</label>
+      <input type="text" class="form-control" id="villeDepart"> <!-- [(ngModel)]="villeDepart"-->
+    </div>
+    <div class="col-md-3">
+      <label for="villeArrivee" class="form-label text-white">Ville d'arrivée :</label>
+      <input type="text" class="form-control" id="villeArrivee"> <!--[(ngModel)]="villeArrivee"-->
+    </div>
+    <div class="col-md-3">
+      <label for="date" class="form-label text-white">Date :</label>
+      <input type="date" class="form-control" id="date"> <!--[(ngModel)]="date"-->
+    </div>
+    <div class="col-md-3">
+      <label for="prixMax" class="form-label text-white">Prix maximum :</label>
+      <input type="number" class="form-control" id="prixMax"> <!--[(ngModel)]="prixMax"-->
+    </div>
+    <div class="col-md-12 d-flex justify-content-center mb-3">
+      <button type="submit" class="btn btn-primary btn-hover" (click)="rechercherCovoiturage()">Rechercher</button>
+    </div>
+  </form>
+</div>
+
+
+
+<div class="d-flex flex-nowrap overflow-auto scrollbar">
+<div class="d-flex justify-content-center">
+        <div *ngFor="let c of covoiturages; let i = index">
+        <div class="card mx-3 mt-5" style="width: 28rem;">
+          <div class="card-body">
+            <h5 class="card-title">Offre covoiturage {{ i + 1 }}</h5>
+            <a href="#" class="list-group-item list-group-item-action">
+              <h6 class="mb-1">Ville de départ : {{c.villedepart}}</h6>
+              <h6 class="mb-1">Ville d'arrivée : {{c.villearrive}}</h6>
+              <div class="mb-3"></div>
+              <p class="mb-1">Numéro de covoiturage : {{c.numerocovoiturage}}</p>
+              <p class="mb-1">Nombre de places : {{c.nbplaces}}</p>
+              <div class="mb-3"></div>
+              <div class="d-flex w-100 justify-content-between">
+                <small class="text-muted">Date : {{c.datejour}}</small>
+                <a href="#" class="btn btn-primary bi " (click)="rechercherCovoiturage()" >Consulter <i class="bi bi-arrow-right"></i> </a>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+
+
+
+<p>{{ maFonction.toString() }}</p>
+
+<button (click)="maFonction()">Cliquez ici</button>
+
+
+
+
+
+<h1>Covoiturages</h1>
+
+<input [(ngModel)]="villedepart" placeholder="Ville de départ">
+<button (click)="search(villedepart)">Rechercher</button>
+
+<ul>
+  <li *ngFor="let covoiturage of covoiturages">
+    {{ covoiturage.villedepart }} - {{ covoiturage.villearrivee }}
+  </li>
+</ul>
+
+
+<form (ngSubmit)="rechercherCovoiturage()">
+  <input type="text" [(ngModel)]="villedepart" name="villedepart">
+  <button type="submit">Recherche</button>
+</form>
+<ul>
+  <li *ngFor="let covoiturage of covoiturages">{{ covoiturage.villedepart }} - {{ covoiturage.villearrivee }}</li>
+</ul>
